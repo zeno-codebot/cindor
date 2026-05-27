@@ -511,6 +511,19 @@ a {
   color: var(--fg-muted);
 }
 
+.pattern-stack {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.pattern-inline-notes,
+.pattern-inline-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+}
+
 .live-toolbar {
   display: flex;
   flex-wrap: wrap;

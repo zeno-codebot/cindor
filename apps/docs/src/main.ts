@@ -893,66 +893,120 @@ function renderDocsHome(activeSectionId: string): string {
       <section class="section" id="patterns" data-label="Patterns" data-value="patterns">
         <div class="section-heading">
           <h2>Patterns and workflows</h2>
-          <p>Higher-level surfaces are composed from smaller primitives so behavior stays reusable and easier to reason about.</p>
+          <p>These examples show how collection views, action hierarchies, and notifications come together from reusable Cindor building blocks.</p>
         </div>
 
         <div class="demo-grid">
           <div class="preview-block">
             <div class="live-toolbar">
-              <strong>Layout primitives</strong>
-              <cindor-badge>New</cindor-badge>
+              <strong>Collection/list page pattern</strong>
+              <cindor-badge tone="accent">Collections</cindor-badge>
             </div>
-            <cindor-provider theme="dark" primary-color="#15803d">
-              <div class="pattern-layout-preview">
-                <cindor-layout>
-                  <cindor-layout-header>
-                    <cindor-stack gap="2">
-                      <strong>Release workspace</strong>
-                      <cindor-stack direction="horizontal" gap="2" wrap align="center">
-                        <cindor-badge tone="accent">Production</cindor-badge>
-                        <cindor-button>Deploy</cindor-button>
-                        <cindor-button variant="ghost">Share</cindor-button>
-                      </cindor-stack>
-                    </cindor-stack>
-                  </cindor-layout-header>
-                  <cindor-layout-content>
-                    <div class="callout">
-                      <cindor-alert id="pattern-alert" tone="${escapeAttribute(activeAlertTone)}">
-                        Compose higher-level patterns from reusable primitives instead of duplicating behavior in each component.
-                      </cindor-alert>
-                    </div>
-                  </cindor-layout-content>
-                </cindor-layout>
+            <p class="muted">Use a summary toolbar, a count badge, and a table surface to keep list pages focused without inventing a one-off page shell.</p>
+            <div class="pattern-stack">
+              <cindor-data-view-toolbar
+                title="Projects"
+                description="Track active work, review ownership, and narrow the current scope without leaving the collection view."
+                item-count="128"
+                selection-count="3"
+              >
+                <cindor-badge slot="meta" tone="accent">Quarterly planning</cindor-badge>
+                <cindor-search slot="filters" placeholder="Search projects"></cindor-search>
+                <cindor-segmented-control slot="view-controls" aria-label="Project scope"></cindor-segmented-control>
+                <cindor-button slot="actions" variant="ghost">Export</cindor-button>
+                <cindor-button slot="actions">Create project</cindor-button>
+                <span>Pair the toolbar with a table, cards, or any other collection body.</span>
+              </cindor-data-view-toolbar>
+              <table class="plain-preview-table">
+                <thead>
+                  <tr>
+                    <th>Project</th>
+                    <th>Owner</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Summer launch</td>
+                    <td>Design systems</td>
+                    <td>In review</td>
+                  </tr>
+                  <tr>
+                    <td>Partner migration</td>
+                    <td>Platform</td>
+                    <td>Active</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="preview-block">
+            <div class="live-toolbar">
+              <strong>Admin table toolbar pattern</strong>
+              <cindor-badge>Operations</cindor-badge>
+            </div>
+            <p class="muted">Admin views usually need filter controls, bulk-selection state, and a primary management action in the same row.</p>
+            <div class="pattern-stack">
+              <cindor-data-view-toolbar
+                title="Team members"
+                description="Review access, filter by role, and act on selected accounts from the same toolbar."
+                item-count="42"
+                selection-count="6"
+              >
+                <cindor-badge slot="meta">SSO enforced</cindor-badge>
+                <cindor-search slot="filters" placeholder="Search people"></cindor-search>
+                <cindor-button-group slot="view-controls" attached>
+                  <cindor-button variant="ghost">All roles</cindor-button>
+                  <cindor-button variant="ghost">Owners</cindor-button>
+                  <cindor-button variant="ghost">Guests</cindor-button>
+                </cindor-button-group>
+                <cindor-button slot="actions" variant="ghost">Bulk deactivate</cindor-button>
+                <cindor-button slot="actions">Invite teammate</cindor-button>
+                <span>Keep high-frequency filters close to the title and push destructive bulk actions to secondary emphasis.</span>
+              </cindor-data-view-toolbar>
+              <div class="pattern-inline-notes">
+                <cindor-badge tone="accent">6 selected</cindor-badge>
+                <span class="muted">Bulk actions can target the current selection without leaving the table context.</span>
               </div>
-            </cindor-provider>
+            </div>
           </div>
 
           <div class="preview-block">
             <div class="live-toolbar">
-              <strong>Search-first navigation</strong>
-              <cindor-badge>Dogfooded</cindor-badge>
+              <strong>Notification/alert pattern</strong>
+              <cindor-badge tone="accent">Feedback</cindor-badge>
             </div>
-            <p class="muted">The docs command palette is built from Cindor's dialog, search, listbox, and option components.</p>
-            <cindor-button data-action="open-palette">Jump with command palette</cindor-button>
+            <p class="muted">Use banners for broad page-level status and alerts for the current task or result. They should complement each other, not compete.</p>
+            <div class="pattern-stack">
+              <cindor-banner tone="warning" title="Scheduled maintenance tonight">
+                Expect brief interruptions from 11:00 PM to 11:30 PM Eastern while the billing cluster rolls forward.
+                <cindor-button slot="actions" variant="ghost">Review checklist</cindor-button>
+              </cindor-banner>
+              <cindor-alert tone="${escapeAttribute(activeAlertTone)}">
+                Changes are autosaved for this workspace. Surface task feedback closer to the content area than global banners.
+              </cindor-alert>
+            </div>
           </div>
 
           <div class="preview-block">
             <div class="live-toolbar">
-              <strong>Form orchestration</strong>
-              <cindor-badge>New surface</cindor-badge>
+              <strong>Action hierarchy pattern</strong>
+              <cindor-badge>Buttons</cindor-badge>
             </div>
-            <p class="muted">cindor-form owns submission, reset, and validation wiring so direct children behave like a real form surface.</p>
-            <cindor-form description="Try submitting with empty fields to see the orchestration layer wire into cindor-form-field messaging." onsubmit="event.preventDefault()">
-              <cindor-form-row>
-                <cindor-form-field label="Workspace name" required>
-                  <cindor-input name="workspaceName" required></cindor-input>
-                </cindor-form-field>
-                <cindor-form-field label="Billing email" required>
-                  <cindor-email-input name="billingEmail" required></cindor-email-input>
-                </cindor-form-field>
-              </cindor-form-row>
-              <cindor-button type="submit">Validate form</cindor-button>
-            </cindor-form>
+            <p class="muted">Keep the primary path obvious with a standard button, then put lower-frequency alternatives behind a split button.</p>
+            <div class="pattern-stack">
+              <div class="pattern-inline-actions">
+                <cindor-button>Publish changes</cindor-button>
+                <cindor-split-button label="Save draft" menu-label="More save actions">
+                  <cindor-menu-item>Save draft</cindor-menu-item>
+                  <cindor-menu-item>Duplicate draft</cindor-menu-item>
+                  <cindor-menu-item>Schedule publish</cindor-menu-item>
+                </cindor-split-button>
+                <cindor-button variant="ghost">Preview</cindor-button>
+              </div>
+              <p class="muted">Reserve the split button for adjacent alternatives to the main action, not as a replacement for every action group.</p>
+            </div>
           </div>
         </div>
       </section>
