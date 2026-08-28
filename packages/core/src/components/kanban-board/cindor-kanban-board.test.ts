@@ -126,4 +126,109 @@ describe("cindor-kanban-board", () => {
     expect(actionListener.mock.calls.at(-1)?.[0].detail.actionKey).toBe("assign");
     expect(actionListener.mock.calls.at(-1)?.[0].detail.cardId).toBe("card-a");
   });
+
+  it("reorders cards within a column and emits card-move detail", async () => {
+    const element = document.createElement("cindor-kanban-board") as CindorKanbanBoard;
+    element.columns = [
+      {
+        id: "triage",
+        title: "Triage",
+        cards: [
+          { id: "card-a", title: "Review inbound bugs" },
+          { id: "card-b", title: "Confirm release notes" }
+        ]
+      }
+    ];
+    const moveListener = vi.fn();
+    element.addEventListener("card-move", moveListener);
+    document.body.append(element);
+    await element.updateComplete;
+
+    const cards = element.renderRoot.querySelectorAll<HTMLElement>('[part="card"]');
+    cards[0]?.dispatchEvent(createDragEvent("dragstart"));
+    cards[1]?.dispatchEvent(createDragEvent("dragover", { clientY: 18 }));
+    cards[1]?.dispatchEvent(createDragEvent("drop", { clientY: 18 }));
+    await element.updateComplete;
+
+    expect(element.columns[0]?.cards.map((card) => card.id)).toEqual(["card-b", "card-a"]);
+    expect(moveListener).toHaveBeenCalledTimes(1);
+    expect(moveListener.mock.calls[0]?.[0].detail).toMatchObject({
+      cardId: "card-a",
+      fromColumnId: "triage",
+      fromIndex: 0,
+      toColumnId: "triage",
+      toIndex: 1
+    });
+  });
+
+  it("moves cards between columns and supports empty-column drops", async () => {
+    const element = document.createElement("cindor-kanban-board") as CindorKanbanBoard;
+    element.columns = columns;
+    const moveListener = vi.fn();
+    element.addEventListener("card-move", moveListener);
+    document.body.append(element);
+    await element.updateComplete;
+
+    const card = element.renderRoot.querySelector<HTMLElement>('[data-card-id="card-a"]');
+    const readyColumn = element.renderRoot.querySelector<HTMLElement>('[data-column-id="ready"] [part="column-cards"]');
+
+    card?.dispatchEvent(createDragEvent("dragstart"));
+    readyColumn?.dispatchEvent(createDragEvent("dragover"));
+    readyColumn?.dispatchEvent(createDragEvent("drop"));
+    await element.updateComplete;
+
+    expect(element.columns[0]?.cards).toHaveLength(0);
+    expect(element.columns[1]?.cards.map((columnCard) => columnCard.id)).toEqual(["card-a"]);
+    expect(moveListener.mock.calls[0]?.[0].detail).toMatchObject({
+      fromColumnId: "triage",
+      toColumnId: "ready",
+      toIndex: 0
+    });
+  });
+
+  it("does not drag disabled cards", async () => {
+    const element = document.createElement("cindor-kanban-board") as CindorKanbanBoard;
+    element.columns = [
+      {
+        id: "triage",
+        title: "Triage",
+        cards: [
+          { id: "card-a", title: "Disabled card", disabled: true },
+          { id: "card-b", title: "Enabled card" }
+        ]
+      }
+    ];
+    const moveListener = vi.fn();
+    element.addEventListener("card-move", moveListener);
+    document.body.append(element);
+    await element.updateComplete;
+
+    const cards = element.renderRoot.querySelectorAll<HTMLElement>('[part="card"]');
+    cards[0]?.dispatchEvent(createDragEvent("dragstart"));
+    cards[1]?.dispatchEvent(createDragEvent("dragover"));
+    cards[1]?.dispatchEvent(createDragEvent("drop"));
+    await element.updateComplete;
+
+    expect(element.columns[0]?.cards.map((card) => card.id)).toEqual(["card-a", "card-b"]);
+    expect(moveListener).not.toHaveBeenCalled();
+  });
 });
+
+function createDragEvent(type: string, init: { clientY?: number } = {}): Event {
+  const event = new Event(type, { bubbles: true, cancelable: true });
+
+  Object.defineProperty(event, "clientY", {
+    configurable: true,
+    value: init.clientY ?? 0
+  });
+  Object.defineProperty(event, "dataTransfer", {
+    configurable: true,
+    value: {
+      dropEffect: "move",
+      effectAllowed: "move",
+      setData: vi.fn()
+    }
+  });
+
+  return event;
+}

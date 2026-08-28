@@ -3557,7 +3557,7 @@ export const CindorKanbanBoard = defineComponent({
     emptyMessage: { type: String, default: "No cards in this column." },
     selectedCardId: { type: String, default: "" }
   },
-  emits: ["update:selectedCardId", "select", "card-action"],
+  emits: ["update:selectedCardId", "select", "card-action", "card-move"],
   setup(props, { attrs, emit }) {
     const handleSelect = (event: Event) => {
       const target = event.currentTarget as HTMLElement & { selectedCardId: string };
@@ -3568,6 +3568,10 @@ export const CindorKanbanBoard = defineComponent({
     const handleCardAction = (event: Event) => {
       emit("card-action", event);
     };
+
+    const handleCardMove = (event: Event) => {
+      emit("card-move", event);
+    };
     return () =>
           h("cindor-kanban-board", {
               ...attrs,
@@ -3576,6 +3580,7 @@ export const CindorKanbanBoard = defineComponent({
               "selected-card-id": props.selectedCardId,
               onSelect: handleSelect,
               onCardAction: handleCardAction,
+              onCardMove: handleCardMove,
           });
   }
 });

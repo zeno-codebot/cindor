@@ -1034,7 +1034,8 @@ export const CindorKanbanBoard = createComponent({
   elementClass: CindorKanbanBoardElement,
   events: {
     onSelect: "select",
-    onCardAction: "card-action"
+    onCardAction: "card-action",
+    onCardMove: "card-move"
   }
 });
 

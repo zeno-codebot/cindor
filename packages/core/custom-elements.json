@@ -5490,737 +5490,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "packages/core/src/components/data-grid/cindor-data-grid.stories.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "meta",
-          "type": {
-            "text": "object"
-          },
-          "default": "{ title: \"Data/Data Grid\", render: () => ` <cindor-data-grid id=\"storybook-data-grid\"></cindor-data-grid> <script type=\"module\"> const grid = document.querySelector(\"#storybook-data-grid\"); grid.columns = ${JSON.stringify(columns, null, 2)}; grid.rows = ${JSON.stringify(rows, null, 2)}; </script> ` }"
-        },
-        {
-          "kind": "variable",
-          "name": "Default",
-          "type": {
-            "text": "object"
-          },
-          "default": "{}"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "meta",
-            "module": "packages/core/src/components/data-grid/cindor-data-grid.stories.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "Default",
-          "declaration": {
-            "name": "Default",
-            "module": "packages/core/src/components/data-grid/cindor-data-grid.stories.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "packages/core/src/components/data-grid/cindor-data-grid.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "Keyboard-navigable editable grid for dense operational data.",
-          "name": "CindorDataGrid",
-          "members": [
-            {
-              "kind": "field",
-              "name": "columns",
-              "privacy": "public",
-              "type": {
-                "text": "DataGridColumn[]"
-              },
-              "default": "[]"
-            },
-            {
-              "kind": "field",
-              "name": "emptyMessage",
-              "privacy": "public",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"No rows to display.\"",
-              "attribute": "empty-message",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "rowIdKey",
-              "privacy": "public",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"id\"",
-              "attribute": "row-id-key",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "rows",
-              "privacy": "public",
-              "type": {
-                "text": "DataGridRow[]"
-              },
-              "default": "[]"
-            },
-            {
-              "kind": "field",
-              "name": "sortDirection",
-              "privacy": "public",
-              "type": {
-                "text": "DataGridSortDirection"
-              },
-              "default": "\"ascending\"",
-              "attribute": "sort-direction",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "sortKey",
-              "privacy": "public",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "attribute": "sort-key",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "activeColumnIndex",
-              "type": {
-                "text": "number"
-              },
-              "privacy": "private",
-              "default": "0"
-            },
-            {
-              "kind": "field",
-              "name": "activeRowIndex",
-              "type": {
-                "text": "number"
-              },
-              "privacy": "private",
-              "default": "0"
-            },
-            {
-              "kind": "field",
-              "name": "editingCellKey",
-              "type": {
-                "text": "string | null"
-              },
-              "privacy": "private",
-              "default": "null"
-            },
-            {
-              "kind": "method",
-              "name": "renderHeaderCell",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "column",
-                  "type": {
-                    "text": "DataGridColumn"
-                  }
-                },
-                {
-                  "name": "active",
-                  "type": {
-                    "text": "boolean"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "renderRow",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "row",
-                  "type": {
-                    "text": "DataGridRow"
-                  }
-                },
-                {
-                  "name": "rowIndex",
-                  "type": {
-                    "text": "number"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "renderCellButton",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "detail",
-                  "type": {
-                    "text": "DataGridCellRenderDetail"
-                  }
-                },
-                {
-                  "name": "active",
-                  "type": {
-                    "text": "boolean"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "renderCellEditor",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "detail",
-                  "type": {
-                    "text": "DataGridCellRenderDetail"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleCellKeydown",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "KeyboardEvent"
-                  }
-                },
-                {
-                  "name": "detail",
-                  "type": {
-                    "text": "DataGridCellRenderDetail"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "field",
-              "name": "handleEditorKeydown",
-              "privacy": "private"
-            },
-            {
-              "kind": "method",
-              "name": "handleTextEditorChange",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "detail",
-                  "type": {
-                    "text": "DataGridCellRenderDetail"
-                  }
-                },
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleSelectEditorChange",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "detail",
-                  "type": {
-                    "text": "DataGridCellRenderDetail"
-                  }
-                },
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleSwitchEditorChange",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "detail",
-                  "type": {
-                    "text": "DataGridCellRenderDetail"
-                  }
-                },
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "commitCellEdit",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "detail",
-                  "type": {
-                    "text": "DataGridCellRenderDetail"
-                  }
-                },
-                {
-                  "name": "nextValue",
-                  "type": {
-                    "text": "unknown"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "activateCell",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "rowIndex",
-                  "type": {
-                    "text": "number"
-                  }
-                },
-                {
-                  "name": "columnIndex",
-                  "type": {
-                    "text": "number"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "startEditing",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "rowIndex",
-                  "type": {
-                    "text": "number"
-                  }
-                },
-                {
-                  "name": "columnIndex",
-                  "type": {
-                    "text": "number"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "getNextCell",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "{ rowIndex: number; columnIndex: number } | null"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "rowIndex",
-                  "type": {
-                    "text": "number"
-                  }
-                },
-                {
-                  "name": "columnIndex",
-                  "type": {
-                    "text": "number"
-                  }
-                },
-                {
-                  "name": "key",
-                  "type": {
-                    "text": "string"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "createCellDetail",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "DataGridCellRenderDetail"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "column",
-                  "type": {
-                    "text": "DataGridColumn"
-                  }
-                },
-                {
-                  "name": "columnIndex",
-                  "type": {
-                    "text": "number"
-                  }
-                },
-                {
-                  "name": "row",
-                  "type": {
-                    "text": "DataGridRow"
-                  }
-                },
-                {
-                  "name": "rowId",
-                  "type": {
-                    "text": "string"
-                  }
-                },
-                {
-                  "name": "rowIndex",
-                  "type": {
-                    "text": "number"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "getRowId",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "string"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "row",
-                  "type": {
-                    "text": "DataGridRow"
-                  }
-                },
-                {
-                  "name": "rowIndex",
-                  "type": {
-                    "text": "number"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "getCellKey",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "string"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "rowIndex",
-                  "type": {
-                    "text": "number"
-                  }
-                },
-                {
-                  "name": "columnIndex",
-                  "type": {
-                    "text": "number"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "normalizeTextValue",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "string"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "value",
-                  "type": {
-                    "text": "unknown"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "resolveAlign",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "DataGridCellAlign"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "column",
-                  "type": {
-                    "text": "DataGridColumn"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "toggleSort",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "column",
-                  "type": {
-                    "text": "DataGridColumn"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "field",
-              "name": "sortedRows",
-              "type": {
-                "text": "DataGridRow[]"
-              },
-              "privacy": "private",
-              "readonly": true
-            },
-            {
-              "kind": "method",
-              "name": "defaultSortComparison",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "number"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "leftValue",
-                  "type": {
-                    "text": "unknown"
-                  }
-                },
-                {
-                  "name": "rightValue",
-                  "type": {
-                    "text": "unknown"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "field",
-              "name": "renderedColumns",
-              "type": {
-                "text": "DataGridRenderedColumn[]"
-              },
-              "privacy": "private",
-              "readonly": true
-            },
-            {
-              "kind": "method",
-              "name": "columnCellStyle",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "string | typeof nothing"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "column",
-                  "type": {
-                    "text": "DataGridColumn"
-                  }
-                },
-                {
-                  "name": "stickyOffset",
-                  "type": {
-                    "text": "string | null"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "stickyColumnWidth",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "string"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "column",
-                  "type": {
-                    "text": "DataGridColumn"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "focusActiveCell",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            }
-          ],
-          "events": [
-            {
-              "name": "cell-edit",
-              "type": {
-                "text": "CustomEvent<DataGridCellEditDetail>"
-              },
-              "description": "Fired when an inline editor updates a cell value."
-            },
-            {
-              "name": "active-cell-change",
-              "type": {
-                "text": "CustomEvent<DataGridActiveCellDetail>"
-              },
-              "description": "Fired when the active cell changes."
-            },
-            {
-              "name": "sort-change",
-              "type": {
-                "text": "CustomEvent<DataGridSortChangeDetail>"
-              },
-              "description": "Fired when the active sort column or direction changes."
-            }
-          ],
-          "attributes": [
-            {
-              "name": "empty-message",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"No rows to display.\"",
-              "fieldName": "emptyMessage"
-            },
-            {
-              "name": "row-id-key",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"id\"",
-              "fieldName": "rowIdKey"
-            },
-            {
-              "name": "sort-direction",
-              "type": {
-                "text": "DataGridSortDirection"
-              },
-              "default": "\"ascending\"",
-              "fieldName": "sortDirection"
-            },
-            {
-              "name": "sort-key",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "fieldName": "sortKey"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "tagName": "cindor-data-grid",
-          "customElement": true,
-          "summary": "Editable grid foundation with sticky columns and active-cell navigation."
-        },
-        {
-          "kind": "variable",
-          "name": "column"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "CindorDataGrid",
-          "declaration": {
-            "name": "CindorDataGrid",
-            "module": "packages/core/src/components/data-grid/cindor-data-grid.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "packages/core/src/components/data-table/cindor-data-table.stories.ts",
       "declarations": [
         {
@@ -7917,6 +7186,737 @@
           "declaration": {
             "name": "CindorDataTable",
             "module": "packages/core/src/components/data-table/cindor-data-table.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "packages/core/src/components/data-grid/cindor-data-grid.stories.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "meta",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ title: \"Data/Data Grid\", render: () => ` <cindor-data-grid id=\"storybook-data-grid\"></cindor-data-grid> <script type=\"module\"> const grid = document.querySelector(\"#storybook-data-grid\"); grid.columns = ${JSON.stringify(columns, null, 2)}; grid.rows = ${JSON.stringify(rows, null, 2)}; </script> ` }"
+        },
+        {
+          "kind": "variable",
+          "name": "Default",
+          "type": {
+            "text": "object"
+          },
+          "default": "{}"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "meta",
+            "module": "packages/core/src/components/data-grid/cindor-data-grid.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Default",
+          "declaration": {
+            "name": "Default",
+            "module": "packages/core/src/components/data-grid/cindor-data-grid.stories.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "packages/core/src/components/data-grid/cindor-data-grid.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Keyboard-navigable editable grid for dense operational data.",
+          "name": "CindorDataGrid",
+          "members": [
+            {
+              "kind": "field",
+              "name": "columns",
+              "privacy": "public",
+              "type": {
+                "text": "DataGridColumn[]"
+              },
+              "default": "[]"
+            },
+            {
+              "kind": "field",
+              "name": "emptyMessage",
+              "privacy": "public",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"No rows to display.\"",
+              "attribute": "empty-message",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "rowIdKey",
+              "privacy": "public",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"id\"",
+              "attribute": "row-id-key",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "rows",
+              "privacy": "public",
+              "type": {
+                "text": "DataGridRow[]"
+              },
+              "default": "[]"
+            },
+            {
+              "kind": "field",
+              "name": "sortDirection",
+              "privacy": "public",
+              "type": {
+                "text": "DataGridSortDirection"
+              },
+              "default": "\"ascending\"",
+              "attribute": "sort-direction",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "sortKey",
+              "privacy": "public",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "sort-key",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "activeColumnIndex",
+              "type": {
+                "text": "number"
+              },
+              "privacy": "private",
+              "default": "0"
+            },
+            {
+              "kind": "field",
+              "name": "activeRowIndex",
+              "type": {
+                "text": "number"
+              },
+              "privacy": "private",
+              "default": "0"
+            },
+            {
+              "kind": "field",
+              "name": "editingCellKey",
+              "type": {
+                "text": "string | null"
+              },
+              "privacy": "private",
+              "default": "null"
+            },
+            {
+              "kind": "method",
+              "name": "renderHeaderCell",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "column",
+                  "type": {
+                    "text": "DataGridColumn"
+                  }
+                },
+                {
+                  "name": "active",
+                  "type": {
+                    "text": "boolean"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "renderRow",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "row",
+                  "type": {
+                    "text": "DataGridRow"
+                  }
+                },
+                {
+                  "name": "rowIndex",
+                  "type": {
+                    "text": "number"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "renderCellButton",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "detail",
+                  "type": {
+                    "text": "DataGridCellRenderDetail"
+                  }
+                },
+                {
+                  "name": "active",
+                  "type": {
+                    "text": "boolean"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "renderCellEditor",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "detail",
+                  "type": {
+                    "text": "DataGridCellRenderDetail"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleCellKeydown",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "KeyboardEvent"
+                  }
+                },
+                {
+                  "name": "detail",
+                  "type": {
+                    "text": "DataGridCellRenderDetail"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "handleEditorKeydown",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "handleTextEditorChange",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "detail",
+                  "type": {
+                    "text": "DataGridCellRenderDetail"
+                  }
+                },
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleSelectEditorChange",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "detail",
+                  "type": {
+                    "text": "DataGridCellRenderDetail"
+                  }
+                },
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleSwitchEditorChange",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "detail",
+                  "type": {
+                    "text": "DataGridCellRenderDetail"
+                  }
+                },
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "commitCellEdit",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "detail",
+                  "type": {
+                    "text": "DataGridCellRenderDetail"
+                  }
+                },
+                {
+                  "name": "nextValue",
+                  "type": {
+                    "text": "unknown"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "activateCell",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "rowIndex",
+                  "type": {
+                    "text": "number"
+                  }
+                },
+                {
+                  "name": "columnIndex",
+                  "type": {
+                    "text": "number"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "startEditing",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "rowIndex",
+                  "type": {
+                    "text": "number"
+                  }
+                },
+                {
+                  "name": "columnIndex",
+                  "type": {
+                    "text": "number"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "getNextCell",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "{ rowIndex: number; columnIndex: number } | null"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "rowIndex",
+                  "type": {
+                    "text": "number"
+                  }
+                },
+                {
+                  "name": "columnIndex",
+                  "type": {
+                    "text": "number"
+                  }
+                },
+                {
+                  "name": "key",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "createCellDetail",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "DataGridCellRenderDetail"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "column",
+                  "type": {
+                    "text": "DataGridColumn"
+                  }
+                },
+                {
+                  "name": "columnIndex",
+                  "type": {
+                    "text": "number"
+                  }
+                },
+                {
+                  "name": "row",
+                  "type": {
+                    "text": "DataGridRow"
+                  }
+                },
+                {
+                  "name": "rowId",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "rowIndex",
+                  "type": {
+                    "text": "number"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "getRowId",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "string"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "row",
+                  "type": {
+                    "text": "DataGridRow"
+                  }
+                },
+                {
+                  "name": "rowIndex",
+                  "type": {
+                    "text": "number"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "getCellKey",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "string"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "rowIndex",
+                  "type": {
+                    "text": "number"
+                  }
+                },
+                {
+                  "name": "columnIndex",
+                  "type": {
+                    "text": "number"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "normalizeTextValue",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "string"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "value",
+                  "type": {
+                    "text": "unknown"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "resolveAlign",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "DataGridCellAlign"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "column",
+                  "type": {
+                    "text": "DataGridColumn"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "toggleSort",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "column",
+                  "type": {
+                    "text": "DataGridColumn"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "sortedRows",
+              "type": {
+                "text": "DataGridRow[]"
+              },
+              "privacy": "private",
+              "readonly": true
+            },
+            {
+              "kind": "method",
+              "name": "defaultSortComparison",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "number"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "leftValue",
+                  "type": {
+                    "text": "unknown"
+                  }
+                },
+                {
+                  "name": "rightValue",
+                  "type": {
+                    "text": "unknown"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "renderedColumns",
+              "type": {
+                "text": "DataGridRenderedColumn[]"
+              },
+              "privacy": "private",
+              "readonly": true
+            },
+            {
+              "kind": "method",
+              "name": "columnCellStyle",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "string | typeof nothing"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "column",
+                  "type": {
+                    "text": "DataGridColumn"
+                  }
+                },
+                {
+                  "name": "stickyOffset",
+                  "type": {
+                    "text": "string | null"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "stickyColumnWidth",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "string"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "column",
+                  "type": {
+                    "text": "DataGridColumn"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "focusActiveCell",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            }
+          ],
+          "events": [
+            {
+              "name": "cell-edit",
+              "type": {
+                "text": "CustomEvent<DataGridCellEditDetail>"
+              },
+              "description": "Fired when an inline editor updates a cell value."
+            },
+            {
+              "name": "active-cell-change",
+              "type": {
+                "text": "CustomEvent<DataGridActiveCellDetail>"
+              },
+              "description": "Fired when the active cell changes."
+            },
+            {
+              "name": "sort-change",
+              "type": {
+                "text": "CustomEvent<DataGridSortChangeDetail>"
+              },
+              "description": "Fired when the active sort column or direction changes."
+            }
+          ],
+          "attributes": [
+            {
+              "name": "empty-message",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"No rows to display.\"",
+              "fieldName": "emptyMessage"
+            },
+            {
+              "name": "row-id-key",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"id\"",
+              "fieldName": "rowIdKey"
+            },
+            {
+              "name": "sort-direction",
+              "type": {
+                "text": "DataGridSortDirection"
+              },
+              "default": "\"ascending\"",
+              "fieldName": "sortDirection"
+            },
+            {
+              "name": "sort-key",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "fieldName": "sortKey"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "cindor-data-grid",
+          "customElement": true,
+          "summary": "Editable grid foundation with sticky columns and active-cell navigation."
+        },
+        {
+          "kind": "variable",
+          "name": "column"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CindorDataGrid",
+          "declaration": {
+            "name": "CindorDataGrid",
+            "module": "packages/core/src/components/data-grid/cindor-data-grid.ts"
           }
         }
       ]
@@ -13759,802 +13759,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "packages/core/src/components/filter-builder/cindor-filter-builder.stories.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "meta",
-          "type": {
-            "text": "object"
-          },
-          "default": "{ title: \"Forms/Filter Builder\", render: () => html` <cindor-filter-builder aria-label=\"Issue filters\" .fields=${fields} value=${initialValue} ></cindor-filter-builder> ` }"
-        },
-        {
-          "kind": "variable",
-          "name": "Default",
-          "type": {
-            "text": "object"
-          },
-          "default": "{}"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "meta",
-            "module": "packages/core/src/components/filter-builder/cindor-filter-builder.stories.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "Default",
-          "declaration": {
-            "name": "Default",
-            "module": "packages/core/src/components/filter-builder/cindor-filter-builder.stories.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "packages/core/src/components/filter-builder/cindor-filter-builder.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "Rule and group based filtering UI built from Cindor field, button, and fieldset primitives.\n\nThe serialized `value` property stores the current filter group as JSON.",
-          "name": "CindorFilterBuilder",
-          "members": [
-            {
-              "kind": "field",
-              "name": "disabled",
-              "privacy": "public",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "attribute": "disabled",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "fields",
-              "privacy": "public",
-              "type": {
-                "text": "FilterBuilderField[]"
-              },
-              "default": "[]"
-            },
-            {
-              "kind": "field",
-              "name": "name",
-              "privacy": "public",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "attribute": "name",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "privacy": "public",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "attribute": "value"
-            },
-            {
-              "kind": "field",
-              "name": "group",
-              "type": {
-                "text": "FilterBuilderGroup"
-              },
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "idCounter",
-              "type": {
-                "text": "number"
-              },
-              "privacy": "private",
-              "default": "0"
-            },
-            {
-              "kind": "method",
-              "name": "formDisabledCallback",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "disabled",
-                  "type": {
-                    "text": "boolean"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "renderGroup",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "unknown"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "group",
-                  "type": {
-                    "text": "FilterBuilderGroup"
-                  }
-                },
-                {
-                  "name": "path",
-                  "type": {
-                    "text": "number[]"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "renderRule",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "unknown"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "rule",
-                  "type": {
-                    "text": "FilterBuilderRule"
-                  }
-                },
-                {
-                  "name": "path",
-                  "type": {
-                    "text": "number[]"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "renderActionButton",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "unknown"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "label",
-                  "type": {
-                    "text": "string"
-                  }
-                },
-                {
-                  "name": "onClick",
-                  "type": {
-                    "text": "() => void"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "renderValueControl",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "unknown"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "rule",
-                  "type": {
-                    "text": "FilterBuilderRule"
-                  }
-                },
-                {
-                  "name": "path",
-                  "type": {
-                    "text": "number[]"
-                  }
-                },
-                {
-                  "name": "field",
-                  "optional": true,
-                  "type": {
-                    "text": "FilterBuilderField"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleRuleFieldChange",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "path",
-                  "type": {
-                    "text": "number[]"
-                  }
-                },
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleRuleOperatorChange",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "path",
-                  "type": {
-                    "text": "number[]"
-                  }
-                },
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleRuleValueChange",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "path",
-                  "type": {
-                    "text": "number[]"
-                  }
-                },
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "updateGroupLogic",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "path",
-                  "type": {
-                    "text": "number[]"
-                  }
-                },
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "addRule",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "path",
-                  "type": {
-                    "text": "number[]"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "addGroup",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "path",
-                  "type": {
-                    "text": "number[]"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "removeNode",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "path",
-                  "type": {
-                    "text": "number[]"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "commitGroup",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "group",
-                  "type": {
-                    "text": "FilterBuilderGroup"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "dispatchValueEvents",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "syncFormState",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "updateGroupAtPath",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "FilterBuilderGroup"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "group",
-                  "type": {
-                    "text": "FilterBuilderGroup"
-                  }
-                },
-                {
-                  "name": "path",
-                  "type": {
-                    "text": "number[]"
-                  }
-                },
-                {
-                  "name": "updater",
-                  "type": {
-                    "text": "(group: FilterBuilderGroup) => FilterBuilderGroup"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "updateRuleAtPath",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "FilterBuilderGroup"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "group",
-                  "type": {
-                    "text": "FilterBuilderGroup"
-                  }
-                },
-                {
-                  "name": "path",
-                  "type": {
-                    "text": "number[]"
-                  }
-                },
-                {
-                  "name": "updater",
-                  "type": {
-                    "text": "(rule: FilterBuilderRule) => FilterBuilderRule"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "removeNodeAtPath",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "FilterBuilderGroup"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "group",
-                  "type": {
-                    "text": "FilterBuilderGroup"
-                  }
-                },
-                {
-                  "name": "path",
-                  "type": {
-                    "text": "number[]"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "createDefaultGroup",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "FilterBuilderGroup"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "createDefaultRule",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "FilterBuilderRule"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "fieldValue",
-                  "optional": true,
-                  "type": {
-                    "text": "string"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "normalizeGroup",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "FilterBuilderGroup"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "group",
-                  "type": {
-                    "text": "FilterBuilderGroup"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "normalizeRule",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "FilterBuilderRule"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "rule",
-                  "type": {
-                    "text": "FilterBuilderRule"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "normalizeRuleValue",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "string"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "value",
-                  "type": {
-                    "text": "string"
-                  }
-                },
-                {
-                  "name": "field",
-                  "optional": true,
-                  "type": {
-                    "text": "FilterBuilderField"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "getDefaultValue",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "string"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "field",
-                  "optional": true,
-                  "type": {
-                    "text": "FilterBuilderField"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "getField",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "FilterBuilderField | undefined"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "fieldValue",
-                  "type": {
-                    "text": "string"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "getFieldType",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "FilterBuilderFieldType"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "field",
-                  "optional": true,
-                  "type": {
-                    "text": "FilterBuilderField"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "getOperators",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "FilterBuilderOperator[]"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "field",
-                  "optional": true,
-                  "type": {
-                    "text": "FilterBuilderField"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "parseValue",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "FilterBuilderGroup | null"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "value",
-                  "type": {
-                    "text": "string"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "serializeGroup",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "string"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "group",
-                  "type": {
-                    "text": "FilterBuilderGroup"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "createId",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "string"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "prefix",
-                  "type": {
-                    "text": "string"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "getControlValue",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "string"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "event",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ]
-            }
-          ],
-          "events": [
-            {
-              "name": "input",
-              "type": {
-                "text": "CustomEvent<FilterBuilderChangeDetail>"
-              },
-              "description": "Fired when the serialized filter value changes."
-            },
-            {
-              "name": "change",
-              "type": {
-                "text": "CustomEvent<FilterBuilderChangeDetail>"
-              },
-              "description": "Fired when the serialized filter value changes."
-            }
-          ],
-          "attributes": [
-            {
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "fieldName": "disabled"
-            },
-            {
-              "name": "name",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "fieldName": "name"
-            },
-            {
-              "name": "value",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "fieldName": "value"
-            }
-          ],
-          "superclass": {
-            "name": "FormAssociatedElement",
-            "module": "/packages/core/src/components/shared/form-associated-element.js"
-          }
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "CindorFilterBuilder",
-          "declaration": {
-            "name": "CindorFilterBuilder",
-            "module": "packages/core/src/components/filter-builder/cindor-filter-builder.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "packages/core/src/components/form/cindor-form.stories.ts",
       "declarations": [
         {
@@ -15359,6 +14563,802 @@
           "declaration": {
             "name": "CindorForm",
             "module": "packages/core/src/components/form/cindor-form.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "packages/core/src/components/filter-builder/cindor-filter-builder.stories.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "meta",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ title: \"Forms/Filter Builder\", render: () => html` <cindor-filter-builder aria-label=\"Issue filters\" .fields=${fields} value=${initialValue} ></cindor-filter-builder> ` }"
+        },
+        {
+          "kind": "variable",
+          "name": "Default",
+          "type": {
+            "text": "object"
+          },
+          "default": "{}"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "meta",
+            "module": "packages/core/src/components/filter-builder/cindor-filter-builder.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Default",
+          "declaration": {
+            "name": "Default",
+            "module": "packages/core/src/components/filter-builder/cindor-filter-builder.stories.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "packages/core/src/components/filter-builder/cindor-filter-builder.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Rule and group based filtering UI built from Cindor field, button, and fieldset primitives.\n\nThe serialized `value` property stores the current filter group as JSON.",
+          "name": "CindorFilterBuilder",
+          "members": [
+            {
+              "kind": "field",
+              "name": "disabled",
+              "privacy": "public",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "disabled",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "fields",
+              "privacy": "public",
+              "type": {
+                "text": "FilterBuilderField[]"
+              },
+              "default": "[]"
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "privacy": "public",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "name",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "privacy": "public",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "value"
+            },
+            {
+              "kind": "field",
+              "name": "group",
+              "type": {
+                "text": "FilterBuilderGroup"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "idCounter",
+              "type": {
+                "text": "number"
+              },
+              "privacy": "private",
+              "default": "0"
+            },
+            {
+              "kind": "method",
+              "name": "formDisabledCallback",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "disabled",
+                  "type": {
+                    "text": "boolean"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "renderGroup",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "unknown"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "group",
+                  "type": {
+                    "text": "FilterBuilderGroup"
+                  }
+                },
+                {
+                  "name": "path",
+                  "type": {
+                    "text": "number[]"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "renderRule",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "unknown"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "rule",
+                  "type": {
+                    "text": "FilterBuilderRule"
+                  }
+                },
+                {
+                  "name": "path",
+                  "type": {
+                    "text": "number[]"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "renderActionButton",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "unknown"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "label",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "onClick",
+                  "type": {
+                    "text": "() => void"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "renderValueControl",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "unknown"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "rule",
+                  "type": {
+                    "text": "FilterBuilderRule"
+                  }
+                },
+                {
+                  "name": "path",
+                  "type": {
+                    "text": "number[]"
+                  }
+                },
+                {
+                  "name": "field",
+                  "optional": true,
+                  "type": {
+                    "text": "FilterBuilderField"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleRuleFieldChange",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "path",
+                  "type": {
+                    "text": "number[]"
+                  }
+                },
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleRuleOperatorChange",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "path",
+                  "type": {
+                    "text": "number[]"
+                  }
+                },
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleRuleValueChange",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "path",
+                  "type": {
+                    "text": "number[]"
+                  }
+                },
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "updateGroupLogic",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "path",
+                  "type": {
+                    "text": "number[]"
+                  }
+                },
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "addRule",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "path",
+                  "type": {
+                    "text": "number[]"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "addGroup",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "path",
+                  "type": {
+                    "text": "number[]"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "removeNode",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "path",
+                  "type": {
+                    "text": "number[]"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "commitGroup",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "group",
+                  "type": {
+                    "text": "FilterBuilderGroup"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "dispatchValueEvents",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "syncFormState",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "updateGroupAtPath",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "FilterBuilderGroup"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "group",
+                  "type": {
+                    "text": "FilterBuilderGroup"
+                  }
+                },
+                {
+                  "name": "path",
+                  "type": {
+                    "text": "number[]"
+                  }
+                },
+                {
+                  "name": "updater",
+                  "type": {
+                    "text": "(group: FilterBuilderGroup) => FilterBuilderGroup"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "updateRuleAtPath",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "FilterBuilderGroup"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "group",
+                  "type": {
+                    "text": "FilterBuilderGroup"
+                  }
+                },
+                {
+                  "name": "path",
+                  "type": {
+                    "text": "number[]"
+                  }
+                },
+                {
+                  "name": "updater",
+                  "type": {
+                    "text": "(rule: FilterBuilderRule) => FilterBuilderRule"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "removeNodeAtPath",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "FilterBuilderGroup"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "group",
+                  "type": {
+                    "text": "FilterBuilderGroup"
+                  }
+                },
+                {
+                  "name": "path",
+                  "type": {
+                    "text": "number[]"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "createDefaultGroup",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "FilterBuilderGroup"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "createDefaultRule",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "FilterBuilderRule"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "fieldValue",
+                  "optional": true,
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "normalizeGroup",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "FilterBuilderGroup"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "group",
+                  "type": {
+                    "text": "FilterBuilderGroup"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "normalizeRule",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "FilterBuilderRule"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "rule",
+                  "type": {
+                    "text": "FilterBuilderRule"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "normalizeRuleValue",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "string"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "value",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "field",
+                  "optional": true,
+                  "type": {
+                    "text": "FilterBuilderField"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "getDefaultValue",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "string"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "field",
+                  "optional": true,
+                  "type": {
+                    "text": "FilterBuilderField"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "getField",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "FilterBuilderField | undefined"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "fieldValue",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "getFieldType",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "FilterBuilderFieldType"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "field",
+                  "optional": true,
+                  "type": {
+                    "text": "FilterBuilderField"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "getOperators",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "FilterBuilderOperator[]"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "field",
+                  "optional": true,
+                  "type": {
+                    "text": "FilterBuilderField"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "parseValue",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "FilterBuilderGroup | null"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "value",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "serializeGroup",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "string"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "group",
+                  "type": {
+                    "text": "FilterBuilderGroup"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "createId",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "string"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "prefix",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "getControlValue",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "string"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ]
+            }
+          ],
+          "events": [
+            {
+              "name": "input",
+              "type": {
+                "text": "CustomEvent<FilterBuilderChangeDetail>"
+              },
+              "description": "Fired when the serialized filter value changes."
+            },
+            {
+              "name": "change",
+              "type": {
+                "text": "CustomEvent<FilterBuilderChangeDetail>"
+              },
+              "description": "Fired when the serialized filter value changes."
+            }
+          ],
+          "attributes": [
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "disabled"
+            },
+            {
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "fieldName": "name"
+            },
+            {
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "fieldName": "value"
+            }
+          ],
+          "superclass": {
+            "name": "FormAssociatedElement",
+            "module": "/packages/core/src/components/shared/form-associated-element.js"
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CindorFilterBuilder",
+          "declaration": {
+            "name": "CindorFilterBuilder",
+            "module": "packages/core/src/components/filter-builder/cindor-filter-builder.ts"
           }
         }
       ]
@@ -18384,6 +18384,24 @@
               "reflects": true
             },
             {
+              "kind": "field",
+              "name": "draggedCardId",
+              "type": {
+                "text": "string | null"
+              },
+              "privacy": "private",
+              "default": "null"
+            },
+            {
+              "kind": "field",
+              "name": "dropTarget",
+              "type": {
+                "text": "KanbanBoardDropTarget | null"
+              },
+              "privacy": "private",
+              "default": "null"
+            },
+            {
               "kind": "method",
               "name": "renderColumn",
               "privacy": "private",
@@ -18411,6 +18429,12 @@
                   "name": "card",
                   "type": {
                     "text": "KanbanBoardCard"
+                  }
+                },
+                {
+                  "name": "cardIndex",
+                  "type": {
+                    "text": "number"
                   }
                 }
               ]
@@ -18483,6 +18507,143 @@
             },
             {
               "kind": "method",
+              "name": "handleCardDragStart",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "DragEvent"
+                  }
+                },
+                {
+                  "name": "card",
+                  "type": {
+                    "text": "KanbanBoardCard"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleCardDragOver",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "DragEvent"
+                  }
+                },
+                {
+                  "name": "column",
+                  "type": {
+                    "text": "KanbanBoardColumn"
+                  }
+                },
+                {
+                  "name": "cardIndex",
+                  "type": {
+                    "text": "number"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleCardDrop",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "DragEvent"
+                  }
+                },
+                {
+                  "name": "column",
+                  "type": {
+                    "text": "KanbanBoardColumn"
+                  }
+                },
+                {
+                  "name": "cardIndex",
+                  "type": {
+                    "text": "number"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleColumnDragOver",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "DragEvent"
+                  }
+                },
+                {
+                  "name": "column",
+                  "type": {
+                    "text": "KanbanBoardColumn"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleColumnDrop",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "DragEvent"
+                  }
+                },
+                {
+                  "name": "column",
+                  "type": {
+                    "text": "KanbanBoardColumn"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "handleDragEnd",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
               "name": "selectCard",
               "privacy": "private",
               "return": {
@@ -18513,6 +18674,155 @@
               },
               "privacy": "private",
               "readonly": true
+            },
+            {
+              "kind": "method",
+              "name": "shouldInsertAfter",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "DragEvent"
+                  }
+                },
+                {
+                  "name": "target",
+                  "type": {
+                    "text": "HTMLElement"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "setDropTarget",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "columnId",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "index",
+                  "type": {
+                    "text": "number"
+                  }
+                },
+                {
+                  "name": "event",
+                  "type": {
+                    "text": "DragEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "moveDraggedCard",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "toColumnId",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "toIndex",
+                  "type": {
+                    "text": "number"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "clearDragState",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "isCardDropTarget",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "columnId",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "index",
+                  "type": {
+                    "text": "number"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "isColumnDropTarget",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "columnId",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "cardCount",
+                  "type": {
+                    "text": "number"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "findCardLocation",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "cardId",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ]
             }
           ],
           "events": [
@@ -18529,6 +18839,13 @@
                 "text": "CustomEvent<KanbanBoardSelectDetail>"
               },
               "description": "Fired when a card is selected."
+            },
+            {
+              "name": "card-move",
+              "type": {
+                "text": "CustomEvent<KanbanBoardMoveDetail>"
+              },
+              "description": "Fired when a card is reordered or moved between columns."
             }
           ],
           "attributes": [
@@ -18558,6 +18875,11 @@
           "tagName": "cindor-kanban-board",
           "customElement": true,
           "summary": "Board-style planning and status surface for workflow apps."
+        },
+        {
+          "kind": "variable",
+          "name": "toColumn",
+          "default": "nextColumns[targetColumnIndex]"
         }
       ],
       "exports": [
@@ -19536,24 +19858,6 @@
                   "text": "void"
                 }
               }
-            },
-            {
-              "kind": "method",
-              "name": "escapeHtml",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "string"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "value",
-                  "type": {
-                    "text": "string"
-                  }
-                }
-              ]
             },
             {
               "kind": "field",
@@ -25591,329 +25895,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "packages/core/src/components/rating-input/cindor-rating-input.stories.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "meta",
-          "type": {
-            "text": "object"
-          },
-          "default": "{ title: \"Components/Rating Input\", args: { clearable: true, max: 5, value: 3 }, render: ({ clearable, max, value }: RatingInputStoryArgs) => html` <cindor-rating-input aria-label=\"Satisfaction rating\" ?clearable=${clearable} .max=${max} .value=${value}></cindor-rating-input> ` }"
-        },
-        {
-          "kind": "variable",
-          "name": "Default",
-          "type": {
-            "text": "object"
-          },
-          "default": "{}"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "meta",
-            "module": "packages/core/src/components/rating-input/cindor-rating-input.stories.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "Default",
-          "declaration": {
-            "name": "Default",
-            "module": "packages/core/src/components/rating-input/cindor-rating-input.stories.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "packages/core/src/components/rating-input/cindor-rating-input.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "CindorRatingInput",
-          "members": [
-            {
-              "kind": "field",
-              "name": "nextId",
-              "type": {
-                "text": "number"
-              },
-              "privacy": "private",
-              "static": true,
-              "default": "0"
-            },
-            {
-              "kind": "field",
-              "name": "clearable",
-              "privacy": "public",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "attribute": "clearable",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "disabled",
-              "privacy": "public",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "attribute": "disabled",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "max",
-              "privacy": "public",
-              "type": {
-                "text": "number"
-              },
-              "default": "5",
-              "attribute": "max",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "name",
-              "privacy": "public",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "attribute": "name",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "required",
-              "privacy": "public",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "attribute": "required",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "privacy": "public",
-              "type": {
-                "text": "number"
-              },
-              "default": "0",
-              "attribute": "value",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "defaultValue",
-              "type": {
-                "text": "number"
-              },
-              "privacy": "private",
-              "default": "0"
-            },
-            {
-              "kind": "field",
-              "name": "groupId",
-              "privacy": "private",
-              "default": "`cindor-rating-input-${CindorRatingInput.nextId++}`"
-            },
-            {
-              "kind": "method",
-              "name": "checkValidity",
-              "return": {
-                "type": {
-                  "text": "boolean"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "focus",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "options",
-                  "optional": true,
-                  "type": {
-                    "text": "FocusOptions"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "reportValidity",
-              "return": {
-                "type": {
-                  "text": "boolean"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "formDisabledCallback",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "disabled",
-                  "type": {
-                    "text": "boolean"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "formResetCallback",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            },
-            {
-              "kind": "field",
-              "name": "handleChange",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "handleInput",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "handleClearClick",
-              "privacy": "private"
-            },
-            {
-              "kind": "method",
-              "name": "syncFormState",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "syncGroupA11y",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            },
-            {
-              "kind": "field",
-              "name": "groupElement",
-              "type": {
-                "text": "HTMLElement | null"
-              },
-              "privacy": "private",
-              "readonly": true
-            },
-            {
-              "kind": "field",
-              "name": "inputElements",
-              "type": {
-                "text": "HTMLInputElement[]"
-              },
-              "privacy": "private",
-              "readonly": true
-            }
-          ],
-          "attributes": [
-            {
-              "name": "clearable",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "fieldName": "clearable"
-            },
-            {
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "fieldName": "disabled"
-            },
-            {
-              "name": "max",
-              "type": {
-                "text": "number"
-              },
-              "default": "5",
-              "fieldName": "max"
-            },
-            {
-              "name": "name",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "fieldName": "name"
-            },
-            {
-              "name": "required",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "fieldName": "required"
-            },
-            {
-              "name": "value",
-              "type": {
-                "text": "number"
-              },
-              "default": "0",
-              "fieldName": "value"
-            }
-          ],
-          "superclass": {
-            "name": "FormAssociatedElement",
-            "module": "/packages/core/src/components/shared/form-associated-element.js"
-          }
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "CindorRatingInput",
-          "declaration": {
-            "name": "CindorRatingInput",
-            "module": "packages/core/src/components/rating-input/cindor-rating-input.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "packages/core/src/components/search/cindor-search.stories.ts",
       "declarations": [
         {
@@ -26882,6 +26863,329 @@
           "declaration": {
             "name": "CindorSegmentedControl",
             "module": "packages/core/src/components/segmented-control/cindor-segmented-control.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "packages/core/src/components/rating-input/cindor-rating-input.stories.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "meta",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ title: \"Components/Rating Input\", args: { clearable: true, max: 5, value: 3 }, render: ({ clearable, max, value }: RatingInputStoryArgs) => html` <cindor-rating-input aria-label=\"Satisfaction rating\" ?clearable=${clearable} .max=${max} .value=${value}></cindor-rating-input> ` }"
+        },
+        {
+          "kind": "variable",
+          "name": "Default",
+          "type": {
+            "text": "object"
+          },
+          "default": "{}"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "meta",
+            "module": "packages/core/src/components/rating-input/cindor-rating-input.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Default",
+          "declaration": {
+            "name": "Default",
+            "module": "packages/core/src/components/rating-input/cindor-rating-input.stories.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "packages/core/src/components/rating-input/cindor-rating-input.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "CindorRatingInput",
+          "members": [
+            {
+              "kind": "field",
+              "name": "nextId",
+              "type": {
+                "text": "number"
+              },
+              "privacy": "private",
+              "static": true,
+              "default": "0"
+            },
+            {
+              "kind": "field",
+              "name": "clearable",
+              "privacy": "public",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "clearable",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "privacy": "public",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "disabled",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "max",
+              "privacy": "public",
+              "type": {
+                "text": "number"
+              },
+              "default": "5",
+              "attribute": "max",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "privacy": "public",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "name",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "required",
+              "privacy": "public",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "required",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "privacy": "public",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "attribute": "value",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "defaultValue",
+              "type": {
+                "text": "number"
+              },
+              "privacy": "private",
+              "default": "0"
+            },
+            {
+              "kind": "field",
+              "name": "groupId",
+              "privacy": "private",
+              "default": "`cindor-rating-input-${CindorRatingInput.nextId++}`"
+            },
+            {
+              "kind": "method",
+              "name": "checkValidity",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "focus",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "options",
+                  "optional": true,
+                  "type": {
+                    "text": "FocusOptions"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "reportValidity",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "formDisabledCallback",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "disabled",
+                  "type": {
+                    "text": "boolean"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "formResetCallback",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "field",
+              "name": "handleChange",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "handleInput",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "handleClearClick",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "syncFormState",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "syncGroupA11y",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "field",
+              "name": "groupElement",
+              "type": {
+                "text": "HTMLElement | null"
+              },
+              "privacy": "private",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "inputElements",
+              "type": {
+                "text": "HTMLInputElement[]"
+              },
+              "privacy": "private",
+              "readonly": true
+            }
+          ],
+          "attributes": [
+            {
+              "name": "clearable",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "clearable"
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "disabled"
+            },
+            {
+              "name": "max",
+              "type": {
+                "text": "number"
+              },
+              "default": "5",
+              "fieldName": "max"
+            },
+            {
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "fieldName": "name"
+            },
+            {
+              "name": "required",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "required"
+            },
+            {
+              "name": "value",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "fieldName": "value"
+            }
+          ],
+          "superclass": {
+            "name": "FormAssociatedElement",
+            "module": "/packages/core/src/components/shared/form-associated-element.js"
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CindorRatingInput",
+          "declaration": {
+            "name": "CindorRatingInput",
+            "module": "packages/core/src/components/rating-input/cindor-rating-input.ts"
           }
         }
       ]
@@ -29345,120 +29649,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "packages/core/src/components/splitter-panel/cindor-splitter-panel.stories.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "meta",
-          "type": {
-            "text": "object"
-          },
-          "default": "{ title: \"Display/Splitter Panel\", render: () => ` <cindor-splitter-panel style=\"padding: var(--space-4); border: 1px solid var(--border); border-radius: var(--radius-lg);\"> Standalone panel content </cindor-splitter-panel> ` }"
-        },
-        {
-          "kind": "variable",
-          "name": "Default",
-          "type": {
-            "text": "object"
-          },
-          "default": "{}"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "meta",
-            "module": "packages/core/src/components/splitter-panel/cindor-splitter-panel.stories.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "Default",
-          "declaration": {
-            "name": "Default",
-            "module": "packages/core/src/components/splitter-panel/cindor-splitter-panel.stories.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "packages/core/src/components/splitter-panel/cindor-splitter-panel.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "Panel surface used inside CindorSplitter.",
-          "name": "CindorSplitterPanel",
-          "slots": [
-            {
-              "description": "Panel content.",
-              "name": ""
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "minSize",
-              "privacy": "public",
-              "type": {
-                "text": "number"
-              },
-              "default": "10",
-              "attribute": "min-size",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "size",
-              "privacy": "public",
-              "type": {
-                "text": "number"
-              },
-              "default": "0",
-              "attribute": "size",
-              "reflects": true
-            }
-          ],
-          "attributes": [
-            {
-              "name": "min-size",
-              "type": {
-                "text": "number"
-              },
-              "default": "10",
-              "fieldName": "minSize"
-            },
-            {
-              "name": "size",
-              "type": {
-                "text": "number"
-              },
-              "default": "0",
-              "fieldName": "size"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "CindorSplitterPanel",
-          "declaration": {
-            "name": "CindorSplitterPanel",
-            "module": "packages/core/src/components/splitter-panel/cindor-splitter-panel.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "packages/core/src/components/stack/cindor-stack.stories.ts",
       "declarations": [
         {
@@ -29624,6 +29814,120 @@
           "declaration": {
             "name": "CindorStack",
             "module": "packages/core/src/components/stack/cindor-stack.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "packages/core/src/components/splitter-panel/cindor-splitter-panel.stories.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "meta",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ title: \"Display/Splitter Panel\", render: () => ` <cindor-splitter-panel style=\"padding: var(--space-4); border: 1px solid var(--border); border-radius: var(--radius-lg);\"> Standalone panel content </cindor-splitter-panel> ` }"
+        },
+        {
+          "kind": "variable",
+          "name": "Default",
+          "type": {
+            "text": "object"
+          },
+          "default": "{}"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "meta",
+            "module": "packages/core/src/components/splitter-panel/cindor-splitter-panel.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Default",
+          "declaration": {
+            "name": "Default",
+            "module": "packages/core/src/components/splitter-panel/cindor-splitter-panel.stories.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "packages/core/src/components/splitter-panel/cindor-splitter-panel.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Panel surface used inside CindorSplitter.",
+          "name": "CindorSplitterPanel",
+          "slots": [
+            {
+              "description": "Panel content.",
+              "name": ""
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "minSize",
+              "privacy": "public",
+              "type": {
+                "text": "number"
+              },
+              "default": "10",
+              "attribute": "min-size",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "size",
+              "privacy": "public",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "attribute": "size",
+              "reflects": true
+            }
+          ],
+          "attributes": [
+            {
+              "name": "min-size",
+              "type": {
+                "text": "number"
+              },
+              "default": "10",
+              "fieldName": "minSize"
+            },
+            {
+              "name": "size",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "fieldName": "size"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CindorSplitterPanel",
+          "declaration": {
+            "name": "CindorSplitterPanel",
+            "module": "packages/core/src/components/splitter-panel/cindor-splitter-panel.ts"
           }
         }
       ]
@@ -32711,6 +33015,79 @@
     },
     {
       "kind": "javascript-module",
+      "path": "packages/core/src/components/timeline/cindor-timeline.stories.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "meta",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ title: \"Display/Timeline\", render: () => ` <cindor-timeline> <cindor-timeline-item> <span slot=\"title\">Project created</span> <span slot=\"timestamp\">Apr 20</span> Initial workspace scaffolded. </cindor-timeline-item> <cindor-timeline-item> <span slot=\"title\">First release</span> <span slot=\"timestamp\">Apr 24</span> Shared components published internally. </cindor-timeline-item> <cindor-timeline-item> <span slot=\"title\">Production launch</span> <span slot=\"timestamp\">Today</span> Traffic is now routed to the new system. </cindor-timeline-item> </cindor-timeline> ` }"
+        },
+        {
+          "kind": "variable",
+          "name": "Default",
+          "type": {
+            "text": "object"
+          },
+          "default": "{}"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "meta",
+            "module": "packages/core/src/components/timeline/cindor-timeline.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Default",
+          "declaration": {
+            "name": "Default",
+            "module": "packages/core/src/components/timeline/cindor-timeline.stories.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "packages/core/src/components/timeline/cindor-timeline.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Ordered event timeline for status history and activity summaries.",
+          "name": "CindorTimeline",
+          "slots": [
+            {
+              "description": "`cindor-timeline-item` children.",
+              "name": ""
+            }
+          ],
+          "members": [],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CindorTimeline",
+          "declaration": {
+            "name": "CindorTimeline",
+            "module": "packages/core/src/components/timeline/cindor-timeline.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "packages/core/src/components/time-input/cindor-time-input.stories.ts",
       "declarations": [
         {
@@ -33380,79 +33757,6 @@
           "declaration": {
             "name": "CindorTimeInput",
             "module": "packages/core/src/components/time-input/cindor-time-input.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "packages/core/src/components/timeline/cindor-timeline.stories.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "meta",
-          "type": {
-            "text": "object"
-          },
-          "default": "{ title: \"Display/Timeline\", render: () => ` <cindor-timeline> <cindor-timeline-item> <span slot=\"title\">Project created</span> <span slot=\"timestamp\">Apr 20</span> Initial workspace scaffolded. </cindor-timeline-item> <cindor-timeline-item> <span slot=\"title\">First release</span> <span slot=\"timestamp\">Apr 24</span> Shared components published internally. </cindor-timeline-item> <cindor-timeline-item> <span slot=\"title\">Production launch</span> <span slot=\"timestamp\">Today</span> Traffic is now routed to the new system. </cindor-timeline-item> </cindor-timeline> ` }"
-        },
-        {
-          "kind": "variable",
-          "name": "Default",
-          "type": {
-            "text": "object"
-          },
-          "default": "{}"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "meta",
-            "module": "packages/core/src/components/timeline/cindor-timeline.stories.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "Default",
-          "declaration": {
-            "name": "Default",
-            "module": "packages/core/src/components/timeline/cindor-timeline.stories.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "packages/core/src/components/timeline/cindor-timeline.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "Ordered event timeline for status history and activity summaries.",
-          "name": "CindorTimeline",
-          "slots": [
-            {
-              "description": "`cindor-timeline-item` children.",
-              "name": ""
-            }
-          ],
-          "members": [],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "CindorTimeline",
-          "declaration": {
-            "name": "CindorTimeline",
-            "module": "packages/core/src/components/timeline/cindor-timeline.ts"
           }
         }
       ]
